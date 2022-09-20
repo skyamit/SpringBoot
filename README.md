@@ -22,6 +22,9 @@ AutoConfiguration(ErrorMvcAutoConfiguration)
 4. How are all the jars available?
 When we create starter project then we can choose what all things we want(Spring boot starter web, tomcat, jackson)
 
+5. How exceptions are handled?
+ResponseEntityExceptionHandler is the class which handles the exception.
+
 ## Path Parameters
 ```
 GetMapping("/somepath/{id}")
@@ -48,7 +51,10 @@ public ResponseEntity<User> addUser(@RequestBody User user)
 6. 404 - Resource Not Found
 7. 500 - Server Error
 
-## Exception Handling :
+## ResponseEntity
+return new ResponseEntity(Object,HttpStatus.INTERNAL_SERVER_ERROR);
+
+## Exception Handling 
 ```
 1. orElse() - If data is not found then we can return other.
 2. if(user==null){
@@ -63,4 +69,23 @@ public ResponseEntity<User> addUser(@RequestBody User user)
    } 
 ```
 
+## Custom Exception Structure 
+```
+public class ErrorDetails{
+   private LocalDate timestamp;
+   private String message;
+   private String details;
 
+   // generate getter, setters, and constructor
+ }
+ 
+ @ControllerAdvice
+ public class CustomizedExceptionHandler extends ResponseEntityExceptionHandler{
+   
+   @ExceptionHandler(Exception.class)
+   public final ResponseEntity<Object> handleAllException(Exception ex,WebRequest request){
+      ErrorDetails errorDetails = new ErrorDetails(LocalDate.now(),ex.getMessage(),request.getDescription(false));
+      return new ResponseEntity(errorDetails,Https.INTERNAL_SERVER_ERROR);
+   }
+ }
+      
