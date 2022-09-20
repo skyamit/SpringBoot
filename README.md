@@ -197,7 +197,7 @@ good.morning.message = Good Morning
 good.morning.message = Good Morning in Dutch
 ```
 
-#### example :
+#### Example :
 ```
 @GetMapping("/hello-world-I18N")
 public String helloWordInternationalisation() {
@@ -206,6 +206,7 @@ public String helloWordInternationalisation() {
 }
 ```
 
+### Versioning
 
 
 
