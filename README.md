@@ -52,8 +52,9 @@ public ResponseEntity<User> addUser(@RequestBody User user)
 7. 500 - Server Error
 
 ## ResponseEntity
+```
 return new ResponseEntity(Object,HttpStatus.INTERNAL_SERVER_ERROR);
-
+```
 ## Exception Handling 
 ```
 1. orElse() - If data is not found then we can return other.
