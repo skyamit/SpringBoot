@@ -174,6 +174,39 @@ LocalDate date;
 4. We can accept head to know what kind of data user expects.
 5. Accept Lanugage Header, Accept MIME Header etc...
 
+#### With the help of "FasterXML Jackson DataFormat" we can handle Content Negotiation.
+```
+<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
+<dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-xml</artifactId>
+    <version>2.13.4</version>
+</dependency>
+```
+#### Add header : accept - application/xml or application/json
+
+
+### Internationalization (I18N)
+#### message.properties
+```
+good.morning.message = Good Morning
+```
+
+#### messages_nl.properties
+```
+good.morning.message = Good Morning in Dutch
+```
+
+#### example :
+```
+@GetMapping("/hello-world-I18N")
+public String helloWordInternationalisation() {
+      Locale locale = LocaleContextHolder.getLocale();
+      return messageSource.getMessage("good.morning.message",null,"Default Message", locale);
+}
+```
+
+
 
 
 
