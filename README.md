@@ -10,6 +10,7 @@
 6. @ControllerAdvice
 7. @ExceptionHandler
 8. @Valid
+9. @Past
 
 ## Basic Questions
 
@@ -132,12 +133,24 @@ public ResponseEntity<User> addUser(@Valid @RequestBody User user){
 }
 ```
 
-#### Note - We have to update our User Bean and add validation to the fields
+#### Note - We have to update our User Bean and add constraints to the fields
+
+### Constraints
 ```
-@Size()
+@Size(min=2,message="Name should be atleast 2 characters")
 String name;
+
+@Past(message="Birth date should be in past")
+LocalDate date;
 ```
-      
-      
+
+## Advanced API Rest Features
+
+### Rest API Documentation
+1. Manually maintain documentation
+2. Generate documentation from code
+
+### Swagger and Open API
+
       
       
