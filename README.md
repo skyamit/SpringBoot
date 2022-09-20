@@ -167,6 +167,13 @@ LocalDate date;
 #### Swagger Link - http://localhost:8080/swagger-ui/index.html
 #### Open API Link - http://localhost:8080/v3/api-docs
 
+### Content Negotitation
+1. Same Resource and Same URI have different Representations.
+2. Different Content Type - XML or JSON...
+3. Different Language  - English or Dutch...
+4. We can accept head to know what kind of data user expects.
+5. Accept Lanugage Header, Accept MIME Header etc...
+
 
 
 
