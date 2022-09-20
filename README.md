@@ -5,6 +5,11 @@
 1. @SpringBootApplication 
 2. @RestController
 3. @AutoWired
+4. @RequestBody
+5. @PathVariable
+6. @ControllerAdvice
+7. @ExceptionHandler
+8. @Valid
 
 ## Basic Questions
 
@@ -104,4 +109,35 @@ return new ResponseEntity(Object,HttpStatus.INTERNAL_SERVER_ERROR);
  }
  
 ```
+## DeleteMapping example :
+```
+@DeleteMapping("/user/{id}")
+public void deleteById(@PathVariable("id") Long id) {
+      userServiceImpl.deleteById(id);
+}
+```
 
+## Validations
+### Dependency
+```
+<groupId>org.springframework.boot</groupId>
+<artifactId>Spring-boot-starter-validation</artifactId>
+```
+
+### Valid Annotation Example
+```
+@PostMapping(path="/addUser")
+public ResponseEntity<User> addUser(@Valid @RequestBody User user){
+      userDao.save(user);
+}
+```
+
+#### Note - We have to update our User Bean and add validation to the fields
+```
+@Size()
+String name;
+```
+      
+      
+      
+      
