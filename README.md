@@ -72,7 +72,14 @@ return new ResponseEntity(Object,HttpStatus.INTERNAL_SERVER_ERROR);
 
 ## Custom Exception Structure 
 ```
-public class ErrorDetails{
+ @ResponseStatus(code=HttpStatus.NotFound)
+ class UserNotFoundException extends RuntimeException{
+   public UserNotFoundException(String message){
+      super(message);
+   }
+ }
+   
+ public class ErrorDetails{
    private LocalDate timestamp;
    private String message;
    private String details;
@@ -84,9 +91,17 @@ public class ErrorDetails{
  public class CustomizedExceptionHandler extends ResponseEntityExceptionHandler{
    
    @ExceptionHandler(Exception.class)
-   public final ResponseEntity<Object> handleAllException(Exception ex,WebRequest request){
+   public final ResponseEntity<ErrorDetails> handleAllException(Exception ex,WebRequest request){
       ErrorDetails errorDetails = new ErrorDetails(LocalDate.now(),ex.getMessage(),request.getDescription(false));
-      return new ResponseEntity(errorDetails,Https.INTERNAL_SERVER_ERROR);
+      return new ResponseEntity<ErrorDetails>(errorDetails,HttpStatus.INTERNAL_SERVER_ERROR);
+   }
+   
+   @ExceptionHandler(UserNotFoundException.class)
+   public final ResponseEntity<ErrorDetails> handleUserNotFoundException(Exception ex,WebRequest request){
+      ErrorDetails errorDetails = new ErrorDetails(LocalDate.now(),ex.getMessage(),request.getDescription(false));
+      return new ResponseEntity<ErrorDetails>(errorDetails,HttpStatus.NOT_FOUND);
    }
  }
-      
+ 
+```
+
