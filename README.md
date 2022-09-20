@@ -23,9 +23,10 @@ AutoConfiguration(ErrorMvcAutoConfiguration)
 When we create starter project then we can choose what all things we want(Spring boot starter web, tomcat, jackson)
 
 ## Path Parameters
+```
 GetMapping("/somepath/{id}")
 public SomeClassName function(@PathVariable("id") long id)
-
+```
 ## Request Methods 
 1. GetMapping - Retrieve Details of resources
 2. PostMapping - create a new resources
@@ -34,9 +35,10 @@ public SomeClassName function(@PathVariable("id") long id)
 5. DeleteMapping - Delete a resources
 
 ## PostMapping example
+```
 @PostMapping("/user")
 public ResponseEntity<User> addUser(@RequestBody User user)
-
+```
 ## Reponse Status for RestAPI
 1. 200 - success
 2. 201 - created
@@ -47,6 +49,7 @@ public ResponseEntity<User> addUser(@RequestBody User user)
 7. 500 - Server Error
 
 ## Exception Handling :
+```
 1. orElse() - If data is not found then we can return other.
 2. if(user==null){
       throw new UserNotFoundException("id:"+id);
@@ -58,6 +61,6 @@ public ResponseEntity<User> addUser(@RequestBody User user)
         super(message);
       }
    } 
-     
+```
 
 
