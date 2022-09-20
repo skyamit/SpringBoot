@@ -151,6 +151,22 @@ LocalDate date;
 2. Generate documentation from code
 
 ### Swagger and Open API
+1. Open API - Standard language Agnostic interface, Discover and Understand Rest API
+2. Swagger - Visualize and Interact with your Rest API.
 
-      
-      
+### Library to automate the generation of API Documentation for Spring Boot Rest API:
+```
+<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-ui</artifactId>
+    <version>1.6.9</version>
+</dependency>
+```
+
+#### Swagger Link - http://localhost:8080/swagger-ui/index.html
+#### Open API Link - http://localhost:8080/v3/api-docs
+
+
+
+
