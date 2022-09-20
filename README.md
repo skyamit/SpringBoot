@@ -207,7 +207,32 @@ public String helloWordInternationalisation() {
 ```
 
 ### Versioning
+1. We can implement versioning by creating two paths
+   ex : /v1/student and /v2/student
+2. We can also implement versioning with the help of params
+   ex : /student?version=1 and /student?version=2
 
+```
+@GetMapping(path="/v1/student")
+public Student version1Student() {
+      return new Student1("Bob Charlie");
+}
+
+@GetMapping(path="/v2/student")
+public Student version2Student() {
+      return new Student2("Bob","Charlie");
+}
+
+@GetMapping(path="/student",params="version=1")
+public Student version1Student() {
+      return new Student1("Bob Charlie");
+}
+
+@GetMapping(path="/student",parms="version=2")
+public Student version2Student() {
+      return new Student2("Bob","Charlie");
+}
+```
 
 
 
