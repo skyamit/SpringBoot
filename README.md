@@ -213,6 +213,8 @@ public String helloWordInternationalisation() {
    ex : /student?version=1 and /student?version=2
 
 ```
+// Using different path
+
 @GetMapping(path="/v1/student")
 public Student version1Student() {
       return new Student1("Bob Charlie");
@@ -223,6 +225,8 @@ public Student version2Student() {
       return new Student2("Bob","Charlie");
 }
 
+// Using different Parameters (/student?version=1)
+
 @GetMapping(path="/student",params="version=1")
 public Student version1Student() {
       return new Student1("Bob Charlie");
@@ -231,6 +235,18 @@ public Student version1Student() {
 @GetMapping(path="/student",parms="version=2")
 public Student version2Student() {
       return new Student2("Bob","Charlie");
+}
+
+// Using different Header
+
+@GetMapping(path="/student",headers ="X-API-VERSION=1")
+public Student version1Student() {
+	return new Student("Bob Charlie");
+}
+
+@GetMapping(path="/student",headers ="X-API-VERSION=2")
+public Student version2Student() {
+	return new Student("Bob","Charlie");
 }
 ```
 
