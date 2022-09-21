@@ -11,6 +11,7 @@
 7. @ExceptionHandler
 8. @Valid
 9. @Past
+10. @GeneratedValue
 
 ## Basic Questions
 
@@ -130,6 +131,7 @@ public void deleteById(@PathVariable("id") Long id) {
 @PostMapping(path="/addUser")
 public ResponseEntity<User> addUser(@Valid @RequestBody User user){
       userDao.save(user);
+      return new ResponseEntity<User>(user,HttpStatus.OK)
 }
 ```
 
