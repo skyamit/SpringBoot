@@ -288,7 +288,7 @@ public EntityModel<UserEntity> hateoasGetByID(@PathVariable("id") Long id) {
 private String name;
 ```
 2. Filtering 
-   - Static Filtering  - @JsonIgnore, @JsonIgnoreProperties
+   - Static Filtering  - @JsonIgnore, @JsonIgnoreProperties (It will be added in all the URI)
    ```
    @Column(name="password")
    @JsonIgnore
@@ -301,8 +301,29 @@ private String name;
    	// class implementation
    }
    ```
-   - Dynamic Filtering
+   - Dynamic Filtering - MappingJacksonValue, @JsonFilter with FilterProvider
 
+
+### Spring Boot Actuator
+- Monitoring API with Actuator
+```
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
+#### Link - http://localhost:8080/actuator
+
+#### application.properties :
+```
+management.endpoints.web.exposure.include=*
+```
+
+#### Link - http://localhost:8080/actuator/beans, 
+####        http://localhost:8080/actuator/env, 
+####        http://localhost:8080/actuator/metrics,
+####        http://localhost:8080/actuator/metrics/http.server.request
+####        http://localhost:8080/actuator/mappings
 
 
 
