@@ -319,11 +319,21 @@ private String name;
 management.endpoints.web.exposure.include=*
 ```
 
-#### Link - http://localhost:8080/actuator/beans, 
-####        http://localhost:8080/actuator/env, 
-####        http://localhost:8080/actuator/metrics,
-####        http://localhost:8080/actuator/metrics/http.server.request
-####        http://localhost:8080/actuator/mappings
+#### Link
+http://localhost:8080/actuator/beans
+http://localhost:8080/actuator/env
+http://localhost:8080/actuator/metrics
+http://localhost:8080/actuator/metrics/http.server.request
+http://localhost:8080/actuator/mappings
 
 
+## HAL Explorer 
+To exlore the api we can use HAL Explorer
+```
+<dependency>
+	<groupId>org.springframework.data</groupId>
+	<artifactId>spring-data-rest-hal-explorer</artifactId>
+</dependency>
+```
 
+#### Link : http://localhost:8080/explorer/index.html#uri=/actuator
