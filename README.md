@@ -250,5 +250,35 @@ public Student version2Student() {
 }
 ```
 
+### HATEOAS
+How to perform subsequent actions?
+- We will provide data and links to perform subsequent action with the help of hateoas.
+
+#### Implmentation option:
+1. We need to create bean with custom format and implement them.
+2. Use standard Implementation - HAL or Spring HATEOAS
+#### Import the class and its static methods:
+```
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+```
+#### Implementation of Hateoas
+```
+@GetMapping("/users")
+public List<UserEntity> retrieveAllUsers(){
+	return userServiceImpl.getAll();
+}
+
+@GetMapping("/user/{id}")
+public EntityModel<UserEntity> hateoasGetByID(@PathVariable("id") Long id) {
+	UserEntity user = userServiceImpl.getById(id).orElse(null);
+	EntityModel<UserEntity> entityModel = EntityModel.of(user);
+	WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+	entityModel.add(link.withRel("all-users"));
+	return entityModel;
+}
+```
+
+
 
 
