@@ -339,3 +339,43 @@ To exlore the api we can use HAL Explorer
 ```
 
 #### Link : http://localhost:8080/explorer/index.html#uri=/actuator
+
+### How to use foreign key:
+```
+@Entity
+public class Post {
+	@Id
+	int id;
+	
+	@Column
+	(name="content")
+	String content;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	UserEntity userEntity;
+	
+	// create getter, setters, equals and hashcode methods
+}
+
+@Entity
+@Table(name="USERENTITY")
+public class UserEntity {
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@Column(name="name")
+	private String name;
+	
+	@Column(name="date")
+	private String date;
+	
+	@OneToMany(mappedBy="userEntity")
+	List<Post> posts;
+	
+	// create getter, setter, equals and hashcode methods
+}
+```
+
+
