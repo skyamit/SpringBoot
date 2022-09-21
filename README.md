@@ -279,6 +279,30 @@ public EntityModel<UserEntity> hateoasGetByID(@PathVariable("id") Long id) {
 }
 ```
 
+### Customizing the Response
+
+1. Change fields name - @JsonProperty("user_name")
+```
+@Column(name="name")
+@JsonProperty("user_name")
+private String name;
+```
+2. Filtering 
+   - Static Filtering  - @JsonIgnore, @JsonIgnoreProperties
+   ```
+   @Column(name="password")
+   @JsonIgnore
+   private String password;
+   
+   or on class level also we can use
+   
+   @JsonIgnoreProperties({"password","dateofbirth"})
+   class UserEntity{
+   	// class implementation
+   }
+   ```
+   - Dynamic Filtering
+
 
 
 
