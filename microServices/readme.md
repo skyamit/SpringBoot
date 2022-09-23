@@ -28,6 +28,14 @@ Microservice1 -> Microservice2 -> Microservice3 -> Microservice4
 3. Faster Release Cycle
 
 
-### 
+### Create first Microservice
+
+Dependency needed : 
+1. Spring Web
+2. Spring Boot Dev Tools
+3. Spring Boot Actuator
+4. Config Client
+
+
 
 
