@@ -36,6 +36,12 @@ Dependency needed :
 3. Spring Boot Actuator
 4. Config Client
 
+#### Microservice will not start if we don't have below line in application.properties file.
+```
+spring.config.import=optional:configserver:http://localhost:8888
+```
+
+
 
 
 
