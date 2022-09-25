@@ -41,7 +41,65 @@ Dependency needed :
 spring.config.import=optional:configserver:http://localhost:8888
 ```
 
+### Feign :
+#### Dependency
+```
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+```
 
+#### Without Feign : 
+```
+	@GetMapping("conversion/{from}/{to}/{quantity}")
+	public CurrencyConversionEntity convertCurrency(@PathVariable String from,@PathVariable String to,@PathVariable BigDecimal quantity) {
+		
+		Map<String,String> uriVariables = new HashMap<>();
+		uriVariables.put("from", from);
+		uriVariables.put("to", to);
+		ResponseEntity<CurrencyConversionEntity> responseEntity = new RestTemplate().getForEntity("http://localhost:8000/exchange/{from}/{to}", CurrencyConversionEntity.class,uriVariables);
+		
+		CurrencyConversionEntity response = responseEntity.getBody();
+		return new CurrencyConversionEntity(response.getId(),from,to,response.getConversionMultiple(),quantity,quantity.multiply(response.getConversionMultiple()),response.getPort());	
+	}
+```
+ 
+#### With Feign : 
+Application File :
+ ```
+@SpringBootApplication
+@EnableFeignClients
+public class CurrencyConversionServiceApplication {
 
+	public static void main(String[] args) {
+		SpringApplication.run(CurrencyConversionServiceApplication.class, args);
+	}
 
+}
+ 
+ ```
+ Controller : 
+ ```
+ 	@GetMapping("conversion-feign/{from}/{to}/{quantity}")
+	public CurrencyConversionEntity convertCurrencyUsingFeign(@PathVariable String from,@PathVariable String to,@PathVariable BigDecimal quantity) {
 
+		CurrencyConversionEntity response = proxy.retrieveExchangeValue(from, to);
+		return new CurrencyConversionEntity(response.getId(),from,to,response.getConversionMultiple(),quantity,quantity.multiply(response.getConversionMultiple()),response.getPort());	
+	}
+```
+
+Feign Proxy File : 
+```
+@FeignClient(name="currency-exchange-service",url="localhost:8000")
+public interface CurrencyExchangeServiceProxy {
+	
+	@GetMapping(path="/exchange/{from}/{to}")
+	public CurrencyConversionEntity retrieveExchangeValue(@PathVariable("from") String from, @PathVariable("to") String to);
+
+}
+```
+
+ 
+ 
+ 
