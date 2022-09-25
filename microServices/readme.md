@@ -41,7 +41,9 @@ Dependency needed :
 spring.config.import=optional:configserver:http://localhost:8888
 ```
 
-### Feign :
+### Feign 
+ - It is used to ease the process of using another service to get response and reduce the amount of code we need to write.
+ 
 #### Dependency
 ```
 <dependency>
