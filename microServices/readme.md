@@ -1,3 +1,11 @@
+### Links used :
+1. http://localhost:8000/exchange/USD/INR
+2. http://localhost:8100/conversion/USD/INR/1000
+3. http://localhost:8100/conversion-feign/USD/INR/100
+4. http://localhost:8765/currency-conversion-service/conversion/USD/INR/1000
+5. http://localhost:8765/currency-exchange-service/exchange/USD/INR
+6. http://localhost:8765/currency-conversion-service/conversion-feign/USD/INR/1000
+
 # Microservices
 
 - Small autonomous services which work together.
