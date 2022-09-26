@@ -110,7 +110,7 @@ public interface CurrencyExchangeServiceProxy {
 }
 ```
 
- ### Filter 
+ ### API Gateway Filter 
 
 1. Local Filter : 
 ```
