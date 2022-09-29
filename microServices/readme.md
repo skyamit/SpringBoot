@@ -171,6 +171,37 @@ public class LoggingFilter implements GlobalFilter{
 }
 ```
 
+### Docker 
+Install Docker application
+
+#### ZipKin
+```
+docker run -p 9411:9411 openzipkin/zipkin:2.3
+```
+#### Dependencies 
+```
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-sleuth</artifactId>
+</dependency>
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+</dependency>
+<dependency>
+	<groupId>org.springframework.amqp</groupId>
+	<artifactId>spring-rabbit</artifactId>
+</dependency>
+```
+
+#### Sampling Configuration(application.properties)
+```
+spring.sleuth.sampler.probability=1.0
+\\ spring.sleuth.sampler.probability=0.4
+```
+
+
+
 
  
  
