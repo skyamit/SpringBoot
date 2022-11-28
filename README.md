@@ -427,3 +427,25 @@ public class SpringSecurityConfiguration {
 	
 }
 ```
+
+### Custom Annotations
+1. Marker interface
+2. Single Valued
+3. Multi valued
+
+Element Type - TYPE(class), METHOD(functions), FIELDS
+```
+MyAnno.java 
+
+@Target({ElementType.TYPE, ElementType.FIELDS}) 
+@Retention(RetentionPolicy.RUNTIME)
+@interface MyAnno {
+	// methods
+	int myValue() default 0; 
+}
+
+@MyAnno(myValue = 347)
+public class Demo{
+}
+
+```
